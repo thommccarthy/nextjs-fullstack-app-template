@@ -1,16 +1,18 @@
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 export interface ISearch {}
 
 const Search: React.FC<ISearch> = () => {
-  const [searchTerm, setSearchTerm] = useState<string>();
+  const router = useRouter();
+  const [searchTerm, setSearchTerm] = useState<string>('');
 
   return (
     <form
       className="flex flex-col items-center gap-y-5"
       onSubmit={(e) => {
         e.preventDefault();
-        alert(searchTerm);
+        router.push(`/results?search=${searchTerm}`);
       }}
     >
       <input
